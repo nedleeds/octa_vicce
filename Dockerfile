@@ -1,108 +1,36 @@
-FROM tensorflow/tensorflow:2.2.2-gpu-py3-jupyter
+FROM pytorch/pytorch:1.8.0-cuda11.1-cudnn8-devel
 
-RUN apt-get update &&\
-    install sudo \
-    build-essential \
-    cmake \
-    git \
-    wget \
-    libatlas-base-dev \
-    libboost-all-dev \
-    libgflags-dev \
-    libgoogle-glog-dev \
-    libhdf5-serial-dev \
-    libleveldb-dev \
-    liblmdb-dev \
-    libopencv-dev \
-    libprotobuf-dev \
-    libsnappy-dev \
-    protobuf-compiler \
-    python-dev \
-    python-pip \
-    libgl1-mesa-glx &&\
-    rm -rf /var/lib/apt/lists/*
+WORKDIR /root
 
-RUN pip install --upgrade pip &&\
-    install opencv-python \
+RUN pip install opencv-python \
     scipy \
     numba \
     numpy \
     ipython \
-    keras \
-    opencv-python \
     pandas \
     Image \
     matplotlib \
     sklearn \
-    gpustat \
-    tensorflow_probability==0.10.1 \
-    -q imageio \
-    -q git+https://github.com/tensorflow/docs
+    gpustat
 
-# setting ZSH
+RUN ["apt-get", "update"]
+RUN ["apt-get", "install", "-y", "zsh"]
+RUN ["apt-get", "install", "libgl1-mesa-glx", "-y"]
+RUN ["apt-get", "install", "git", "-y"]
+RUN ["apt-get", "install", "wget"]
+RUN ["apt-get", "install", "build-essential"]
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
--a 'CASE_SENSITIVE="true"'
+    -t https://github.com/denysdovhan/spaceship-prompt \
+    -a 'SPACESHIP_PROMPT_ADD_NEWLINE="false"' \
+    -a 'SPACESHIP_PROMPT_SEPARATE_LINE="false"' \
+    -p git \
+    -p ssh-agent \
+    -p https://github.com/zsh-users/zsh-autosuggestions \
+    -p https://github.com/zsh-users/zsh-completions
+
 RUN echo "alias python=\"python3\"" >> ~/.zshrc
-RUN echo "alias code=\"/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code\"" >> ~/.zshrc
+RUN echo "alias code=\"/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code\"" >> ~/.zshrc \
+    PATH="$PATH:~/bin/zsh:/usr/bin/zsh:/bin/zsh/:/zsh"
 
-
-
-
-
-# FROM tensorflow/tensorflow:latest-gpu
-
-# ARG DEBIAN_FRONTEND=noninteractive
-# RUN apt-get update 
-# RUN apt-get install -y --no-install-recommends 
-# RUN apt-get install \
-#         sudo \
-#         build-essential \
-#         cmake \
-#         git \
-#         wget 
-#         # libatlas-base-dev \
-#         # libboost-all-dev \
-#         # libgflags-dev \
-#         # libgoogle-glog-dev \
-#         # libhdf5-serial-dev \
-#         # libleveldb-dev \
-#         # liblmdb-dev \
-#         # libopencv-dev \
-#         # libprotobuf-dev \
-#         # protobuf-compiler \
-#         # python-dev \
-#         # python-pip \
-#         # libgl1-mesa-glx &&\
-#     # rm -rf /var/lib/apt/lists/*
-
-# RUN pip install --upgrade pip && install zsh \
-#         scipy \
-#         numba \
-#         numpy \
-#         ipython \
-#         keras \
-#         opencv-python \
-#         pandas \
-#         Image \
-#         matplotlib \
-#         sklearn 
-# # gpustat => nvidia-smi daemon => gpustat -i
-
-
-# # RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" \
-# #     echo "alias python=\"python3\"" >> ~/.zshrc \
-# #     echo "alias code=\"/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code\"">> ~/.zshrc \
-# #     chsh -s \\`which zsh\\`
-
-# RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
-#     -t https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/cloud.zsh-theme \
-#     -p git \
-#     -p ssh-agent \
-#     -p https://github.com/zsh-users/zsh-autosuggestions \
-#     -p https://github.com/zsh-users/zsh-completions \
-#     echo "alias python=\"python3\"" >> ~/.zshrc \
-#     echo "alias code=\"/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code\"">> ~/.zshrc \
-#     chsh -s \\`which zsh\\`
-
-# CMD ["cd", ".."] \
-#     ["cd", "root"]
+RUN chsh -s /bin/zsh
+CMD ["/bin/zsh"]
