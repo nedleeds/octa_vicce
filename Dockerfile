@@ -19,6 +19,7 @@ RUN ["apt-get", "install", "libgl1-mesa-glx", "-y"]
 RUN ["apt-get", "install", "git", "-y"]
 RUN ["apt-get", "install", "wget"]
 RUN ["apt-get", "install", "build-essential"]
+RUN ["apt-get", "install", "apt-get install libglib2.0-0", "-y"]
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
     -t https://github.com/denysdovhan/spaceship-prompt \
     -a 'SPACESHIP_PROMPT_ADD_NEWLINE="false"' \
