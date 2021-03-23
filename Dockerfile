@@ -23,7 +23,7 @@ RUN apt-get update &&\
     rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip &&\
-    install opencv-python\
+    install opencv-python \
     scipy \
     numba \
     numpy \
@@ -35,7 +35,7 @@ RUN pip install --upgrade pip &&\
     matplotlib \
     sklearn \
     gpustat \
-    -q tensorflow-probability\
+    tensorflow_probability==0.10.1 \
     -q imageio \
     -q git+https://github.com/tensorflow/docs
 
