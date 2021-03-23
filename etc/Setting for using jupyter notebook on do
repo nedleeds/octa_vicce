@@ -1,0 +1,16 @@
+Setting for using jupyter notebook on docker container 
+
+# 1. Check deactivation of 'ufw' on ubuntu
+$ sudo ufw status verbose
+[sudo] password for caley: 
+상태: 비활성
+
+# 2. Host에서 컨테이너로 연결시키기 위해서는 세 개의 Rule을 추가해줘야 하는데 일단 policy Rule입니다. 
+  해당 접근을 허용해줍니다.
+
+  sudo iptables -A DOCKER -p tcp --dport 8888 -j ACCEPT -d 172.17.0.3
+  # 컨테이너의 IP는 내 환경에 맞도록 변경해야한다.
+               ==> docker inspect f21be | grep IPAddress 를 우분투에서 쳐서 docker container의 ip주소 확인
+
+        
+
