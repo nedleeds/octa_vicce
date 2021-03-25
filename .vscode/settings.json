@@ -3,5 +3,8 @@
     "terminal.integrated.cursorStyle": "underline",
     "workbench.panel.defaultLocation": "left",
     "jupyter.alwaysScrollOnNewCell": true,
-    "jupyter.jupyterServerType": "local"
+    "jupyter.jupyterServerType": "local",
+    "jupyter.textOutputLimit": 0,
+    "diffEditor.maxComputationTime": 0,
+    "files.participants.timeout": 0
 }
