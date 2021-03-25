@@ -11,7 +11,9 @@ RUN pip install opencv-python \
     Image \
     matplotlib \
     sklearn \
-    gpustat
+    gpustat \
+    keras \
+    ipykernel
 
 RUN ["apt-get", "update"]
 RUN ["apt-get", "install", "-y", "zsh"]
@@ -35,3 +37,5 @@ RUN echo "alias code=\"/Applications/Visual\ Studio\ Code.app/Contents/Resources
 
 RUN chsh -s /bin/zsh
 CMD ["/bin/zsh"]
+
+
