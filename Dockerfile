@@ -14,7 +14,7 @@ RUN pip install opencv-python \
     gpustat \
     keras \
     ipykernel \
-    tensorflow_probability
+    tensorflow_probability==0.10.1
 
 RUN ["apt-get", "update"]
 RUN ["apt-get", "install", "-y", "zsh"]
