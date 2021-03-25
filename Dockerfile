@@ -13,7 +13,8 @@ RUN pip install opencv-python \
     sklearn \
     gpustat \
     keras \
-    ipykernel
+    ipykernel \
+    tensorflow_probability
 
 RUN ["apt-get", "update"]
 RUN ["apt-get", "install", "-y", "zsh"]
