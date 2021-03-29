@@ -42,7 +42,7 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
     -a 'bindkey "\$terminfo[kcuu1]" history-substring-search-up' \
     -a 'bindkey "\$terminfo[kcud1]" history-substring-search-down'
     
-RUN echo "ZSH_THEME_CLOUD_PREFIX='🚀️'" >> ~/.zshrc
+RUN echo "ZSH_THEME_CLOUD_PREFIX='🌿️'" >> ~/.zshrc
 RUN echo "alias python=\"python3\"" >> ~/.zshrc
 RUN PATH="$PATH:~/bin/zsh:/usr/bin/zsh:/bin/zsh/:/zsh:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
