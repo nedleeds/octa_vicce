@@ -41,10 +41,13 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
     -p 'history-substring-search' \
     -a 'bindkey "\$terminfo[kcuu1]" history-substring-search-up' \
     -a 'bindkey "\$terminfo[kcud1]" history-substring-search-down'
-    
-RUN echo "ZSH_THEME_CLOUD_PREFIX='🌤'" >> ~/.zshrc
-RUN echo "alias python=\"python3\"" >> ~/.zshrc
-RUN PATH="$PATH:~/bin/zsh:/usr/bin/zsh:/bin/zsh/:/zsh:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-RUN chsh -s /bin/zsh
+RUN chsh -s /bin/zsh    
+RUN PATH="$PATH:~/bin/zsh:/usr/bin/zsh:/bin/zsh/:/zsh:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+RUN echo "ZSH_THEME_CLOUD_PREFIX='🌤️'" >> ~/.zshrc
+RUN echo "ZSH_THEME_GIT_PROMPT_DIRTY=\"%{$fg[green]%}] %{$fg[yellow]%}🔥️%{$reset_color%}\"" >> ~/.zshrc
+RUN echo "ZSH_THEME_GIT_PROMPT_CLEAN=\"%{$fg[green]%}] 🚀️\"" >> ~/.zshrc
+RUN echo "PROMPT+=$'\n➤➤ '" >> ~/.zshrc
+RUN echo "alias python=\"python3\"" >> ~/.zshrc
+
 CMD ["/bin/zsh"]
