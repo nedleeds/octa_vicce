@@ -45,8 +45,8 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 RUN chsh -s /bin/zsh    
 RUN PATH="$PATH:~/bin/zsh:/usr/bin/zsh:/bin/zsh/:/zsh:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 RUN echo "ZSH_THEME_CLOUD_PREFIX='🌤️'" >> ~/.zshrc
-RUN echo "ZSH_THEME_GIT_PROMPT_DIRTY=\"%{$fg[green]%}] %{$fg[yellow]%}🔥️%{$reset_color%}\"" >> ~/.zshrc
-RUN echo "ZSH_THEME_GIT_PROMPT_CLEAN=\"%{$fg[green]%}] 🚀️\"" >> ~/.zshrc
+RUN echo "ZSH_THEME_GIT_PROMPT_DIRTY=\"%{\$fg[green]%}] %{\$fg[yellow]%}🔥️%{\$reset_color%}\"" >> ~/.zshrc
+RUN echo "ZSH_THEME_GIT_PROMPT_CLEAN=\"%{\$fg[green]%}] 🚀️\"" >> ~/.zshrc
 RUN echo "PROMPT+=$'\n➤➤ '" >> ~/.zshrc
 RUN echo "alias python=\"python3\"" >> ~/.zshrc
 
